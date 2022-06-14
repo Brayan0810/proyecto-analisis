@@ -8,7 +8,7 @@ Autor: Brayan Herney Taimal Cuastumal
 from tkinter import Entry, Label, messagebox, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
 from conexion_mysql import*
 
-#from juego_view import*
+from juego_view import*
 
 class Registro(Frame):
 
@@ -58,10 +58,9 @@ class Registro(Frame):
         Button(self.frame4,command= self.agregar_datos, text='REGISTRAR', font=('Arial',10,'bold'), bg='magenta2').grid(column=0,row=1, pady=10, padx=4)
         Button(self.frame4,command = self.ventana_promedio, text='Promedio', font=('Arial',10,'bold'), bg='orange red').grid(column=1,row=1, padx=10)        
         Button(self.frame4,command = self.eliminar_fila, text='ELIMINAR', font=('Arial',10,'bold'), bg='yellow').grid(column=2,row=1, padx=4)
-        Button(self.frame4,command = self.buscar_nombre, text='BUSCAR POR NOMBRE', font=('Arial',8,'bold'), bg='orange').grid(columnspan=2,column = 1, row=2)
-        Entry(self.frame4,textvariable=self.buscar , font=('Arial',12), width=10).grid(column=0,row=2, pady=1, padx=8)
+        Button(self.frame4,command = self.mostrar_ordenado, text='Ordenar por mayor nivel satisfaccion', font=('Arial',8,'bold'), bg='orange').grid(columnspan=2,column = 1, row=2)
+        #Entry(self.frame4,textvariable=self.buscar , font=('Arial',12), width=10).grid(column=0,row=2, pady=1, padx=8)
         Button(self.frame4,command = self.mostrar_todo, text='MOSTRAR DATOS DE MYSQL', font=('Arial',10,'bold'), bg='green2').grid(columnspan=3,column=0,row=3, pady=8)
-
 
         self.tabla = ttk.Treeview(self.frame3, height=21)
         self.tabla.grid(column=0, row=0)
@@ -139,7 +138,14 @@ class Registro(Frame):
         for dato in registro:
             i= i+1                       
             self.tabla.insert('',i, text = registro[i][1:2], values=registro[i][2:6])
-            
+    
+    def mostrar_ordenado(self):
+        self.tabla.delete(*self.tabla.get_children())
+        registro = self.base_datos.mostrar_total_ordenado()
+        i = -1
+        for dato in registro:
+            i= i+1                       
+            self.tabla.insert('',i, text = registro[i][1:2], values=registro[i][2:6])
 
     """Elminar usuario"""
     def eliminar_fila(self):
@@ -164,7 +170,7 @@ class Registro(Frame):
         promedio1 = self.base_datos.calcular_promedio1()
         promedio2 = self.base_datos.calcular_promedio2()
         promedio3 = self.base_datos.calcular_promedio3()
-        messagebox.showinfo(title= "Promedio", message = f"promedio de la pregunta 1 es: {promedio1} \n promedio de la pregunta 2 es: {promedio2} \n promedio de la pregunta 3 es: {promedio3} ")
+        messagebox.showinfo(title= "Promedio", message = f"promedio de la pregunta 1 es: {promedio1} \npromedio de la pregunta 2 es: {promedio2} \npromedio de la pregunta 3 es: {promedio3} ")
         
 
 def main():

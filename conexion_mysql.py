@@ -74,3 +74,10 @@ class Database:
         cursor.execute(sql)
         promedio = cursor.fetchall()
         return promedio
+
+    def mostrar_total_ordenado(self):
+        cursor = self.conexion.cursor()
+        sql = "select id, codigo, nombre, SUM(pregunta1+pregunta2+pregunta3) as total from usuario GROUP BY id ORDER BY total desc" 
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro

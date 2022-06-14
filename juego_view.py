@@ -102,7 +102,7 @@ def movimiento():
             canvas.coords(canvas.find_withtag("food"), posicion_food)
 
         canvas.create_text(*posicion_snake[-1], text='O' , fill='green2', 
-            font = ('Arial',20), tag ='snake')
+            font = ('Arial',30), tag ='snake')
 
     
         if posicion_snake[-1] == nueva_posicion[0] and len(posicion_snake)>=4: 
@@ -137,7 +137,7 @@ def irCuestionario ():
 """Se iniciliza la vista"""
 ventana = Tk()
 ventana.config(bg='black')
-ventana.title('Juego Snake')
+ventana.title('Juego busca Manzana')
 ventana.geometry('485x510')
 ventana.resizable(0,0)
 
