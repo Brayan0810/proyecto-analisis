@@ -5,7 +5,7 @@ Autor: Brayan Herney Taimal Cuastumal
 """
 
 """Imporatar las librerias necesarias"""
-from tkinter import Entry, Label, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
+from tkinter import Entry, Label, messagebox, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
 from conexion_mysql import*
 
 #from juego_view import*
@@ -158,10 +158,14 @@ class Registro(Frame):
         data = self.tabla.item(current_item)
         self.nombre_borar = data['values'][0]    
    
+    """Ventana que presenta los promedios de las 3 preguntas"""
     def ventana_promedio(self):
-        ventanap = Toplevel()
-        ventanap.geometry("400x300")
-        ventanap.title("Promedio")
+
+        promedio1 = self.base_datos.calcular_promedio1()
+        promedio2 = self.base_datos.calcular_promedio2()
+        promedio3 = self.base_datos.calcular_promedio3()
+        messagebox.showinfo(title= "Promedio", message = f"promedio de la pregunta 1 es: {promedio1} \n promedio de la pregunta 2 es: {promedio2} \n promedio de la pregunta 3 es: {promedio3} ")
+        
 
 def main():
     ventana = Tk()

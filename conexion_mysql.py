@@ -54,3 +54,23 @@ class Database:
         self.conexion.commit()    
         cur.close()
 
+    def calcular_promedio1(self):
+        cursor = self.conexion.cursor()
+        sql = "select AVG(pregunta1) as promedio_pregunta1 from usuario" 
+        cursor.execute(sql)
+        promedio = cursor.fetchall()
+        return promedio
+
+    def calcular_promedio2(self):
+        cursor = self.conexion.cursor()
+        sql = "select AVG(pregunta2) as promedio_pregunta2 from usuario" 
+        cursor.execute(sql)
+        promedio = cursor.fetchall()
+        return promedio
+
+    def calcular_promedio3(self):
+        cursor = self.conexion.cursor()
+        sql = "select AVG(pregunta3) as promedio_pregunta3 from usuario" 
+        cursor.execute(sql)
+        promedio = cursor.fetchall()
+        return promedio
