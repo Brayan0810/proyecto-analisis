@@ -8,7 +8,7 @@ Autor: Brayan Herney Taimal Cuastumal
 from tkinter import Entry, Label, messagebox, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
 from conexion_mysql import*
 
-from juego_view import*
+#from juego_view import*
 
 class Registro(Frame):
 
@@ -18,12 +18,12 @@ class Registro(Frame):
                                     
         self.frame1 = Frame(master)
         self.frame1.grid(columnspan=2, column=0,row=0)
-        self.frame2 = Frame(master, bg='navy')
+        self.frame2 = Frame(master, bg='gray22')
         self.frame2.grid(column=0, row=1)
         self.frame3 = Frame(master)
         self.frame3.grid(rowspan=2, column=1, row=1)
 
-        self.frame4 = Frame(master, bg='black')
+        self.frame4 = Frame(master, bg='gray20')
         self.frame4.grid(column=0, row=2)
 
         self.codigo = StringVar()
@@ -41,12 +41,12 @@ class Registro(Frame):
         Label(self.frame1, text = 'R E G I S T R O \t D E \t D A T O S',bg='gray22',fg='white', font=('Orbitron',15,'bold')).grid(column=0, row=0)
         
         """Para ingreso de datos"""
-        Label(self.frame2, text = 'Por favor registra tus respuestas',fg='white', bg ='navy', font=('Rockwell',12,'bold')).grid(columnspan=2, column=0,row=0, pady=5)
-        Label(self.frame2, text = 'Codigo',fg='white', bg ='navy', font=('Rockwell',13,'bold')).grid(column=0,row=1, pady=15)
-        Label(self.frame2, text = 'Nombre',fg='white', bg ='navy', font=('Rockwell',13,'bold')).grid(column=0,row=2, pady=15)
-        Label(self.frame2, text = '¿Que tanto te gustó \n el test?. (0 a 5)',fg='white', bg ='navy', font=('Rockwell',13,'bold')).grid(column=0,row=3, pady=15)
-        Label(self.frame2, text = '¿Lo volverias a jugar?.\n (0 a 5)', fg='white',bg ='navy', font=('Rockwell',13,'bold')).grid(column=0,row=4, pady=15)
-        Label(self.frame2, text = '¿Lo recomendarias?. \n (0 a 5)',fg='white', bg ='navy', font=('Rockwell',13,'bold')).grid(column=0,row=5, pady=15)
+        Label(self.frame2, text = 'Por favor registra tus respuestas',fg='white', bg ='green', font=('Rockwell',12,'bold')).grid(columnspan=2, column=0,row=0, pady=5)
+        Label(self.frame2, text = 'Codigo',fg='white', bg ='gray22', font=('Rockwell',13,'bold')).grid(column=0,row=1, pady=15)
+        Label(self.frame2, text = 'Nombre',fg='white', bg ='gray22', font=('Rockwell',13,'bold')).grid(column=0,row=2, pady=15)
+        Label(self.frame2, text = '¿Que tanto te gustó \n el test?. (0 a 5)',fg='white', bg ='gray22', font=('Rockwell',13,'bold')).grid(column=0,row=3, pady=15)
+        Label(self.frame2, text = '¿Lo volverias a jugar?.\n (0 a 5)', fg='white',bg ='gray22', font=('Rockwell',13,'bold')).grid(column=0,row=4, pady=15)
+        Label(self.frame2, text = '¿Lo recomendarias?. \n (0 a 5)',fg='white', bg ='gray22', font=('Rockwell',13,'bold')).grid(column=0,row=5, pady=15)
 
         Entry(self.frame2,textvariable=self.codigo , font=('Arial',12)).grid(column=1,row=1, padx =5)
         Entry(self.frame2,textvariable=self.nombre , font=('Arial',12)).grid(column=1,row=2)
@@ -55,12 +55,12 @@ class Registro(Frame):
         Entry(self.frame2,textvariable=self.cantidad , font=('Arial',12)).grid(column=1,row=5)
        
         Label(self.frame4, text = 'Control',fg='white', bg ='black', font=('Rockwell',12,'bold')).grid(columnspan=3, column=0,row=0, pady=1, padx=4)         
-        Button(self.frame4,command= self.agregar_datos, text='REGISTRAR', font=('Arial',10,'bold'), bg='magenta2').grid(column=0,row=1, pady=10, padx=4)
-        Button(self.frame4,command = self.ventana_promedio, text='Promedio', font=('Arial',10,'bold'), bg='orange red').grid(column=1,row=1, padx=10)        
-        Button(self.frame4,command = self.eliminar_fila, text='ELIMINAR', font=('Arial',10,'bold'), bg='yellow').grid(column=2,row=1, padx=4)
-        Button(self.frame4,command = self.mostrar_ordenado, text='Ordenar por mayor nivel satisfaccion', font=('Arial',8,'bold'), bg='orange').grid(columnspan=2,column = 1, row=2)
+        Button(self.frame4,command= self.agregar_datos, text='REGISTRAR', font=('Arial',10,'bold'), bg='green2').grid(column=0,row=1, pady=10, padx=4)
+        Button(self.frame4,command = self.ventana_promedio, text='Promedio', font=('Arial',10,'bold'), bg='blue').grid(column=1,row=1, padx=10)        
+        Button(self.frame4,command = self.eliminar_fila, text='ELIMINAR', font=('Arial',10,'bold'), bg='red').grid(column=2,row=1, padx=4)
+        Button(self.frame4,command = self.mostrar_ordenado, text='Ordenar por mayor nivel satisfaccion', font=('Arial',10,'bold'), bg='blue').grid(columnspan=2,column = 1, row=2)
         #Entry(self.frame4,textvariable=self.buscar , font=('Arial',12), width=10).grid(column=0,row=2, pady=1, padx=8)
-        Button(self.frame4,command = self.mostrar_todo, text='MOSTRAR DATOS DE MYSQL', font=('Arial',10,'bold'), bg='green2').grid(columnspan=3,column=0,row=3, pady=8)
+        Button(self.frame4,command = self.mostrar_todo, text='MOSTRAR DATOS DE MYSQL', font=('Arial',10,'bold'), bg='green').grid(columnspan=3,column=0,row=3, pady=8)
 
         self.tabla = ttk.Treeview(self.frame3, height=21)
         self.tabla.grid(column=0, row=0)

@@ -18,7 +18,7 @@ nueva_posicion =[(15,15)]
 a = '->'
 
 """Metodo para definir las coordenadas del recorrido (arriba, abajo, izquierda, derecha"""
-def coordenadas_snake():
+def coordenadas_juego():
     global direccion, posicion_snake,x,y ,nueva_posicion,a 
 
     if direction =='up': # arriba
@@ -83,7 +83,9 @@ def direccion(event):
 def movimiento():
     global posicion_food, posicion_snake,nueva_posicion
 
-    coordenadas_snake()
+    coordenadas_juego()
+
+    cantidad['text'] = 'Coordenadas 🍎 : {}'.format(a)
 
     if posicion_snake[0] == posicion_pared or posicion_snake[0] == posicion_pared2 or posicion_snake[0] == posicion_pared3 or posicion_snake[0] == posicion_pared4:
         cruzar_snake()
@@ -91,7 +93,7 @@ def movimiento():
     if posicion_food == posicion_snake[0]:
         n = len(posicion_snake)
 
-        cantidad['text'] = 'Cantidad 🍎 : {}'.format(n)
+        cantidad['text'] = 'Coordenadas 🍎 : {}'.format(a)
 
         #posicion_food = (random.choice(posiciones), random.choice(posiciones))
         posicion_food = (440,440)
@@ -113,7 +115,7 @@ def movimiento():
             if len(posicion_snake)==3:
                 maximo_nivel()
         
-    cantidad.after(500,movimiento)
+    cantidad.after(800,movimiento)
 
 def cruzar_snake():
     canvas.delete(ALL)
@@ -182,11 +184,11 @@ button1 = Button(frame_1, text='Ir al cuestionario', bg='orange' ,
     command = irCuestionario)
 button1.grid(row=0, column=0, padx=20)
 
-button2 = Button(frame_1, text='Iniciar', bg='aqua', 
+button2 = Button(frame_1, text='Iniciar', bg='green2', 
     command = movimiento)
 button2.grid(row=0, column=1, padx=20)
 
-cantidad =Label(frame_1, text='Cantidad 🍎 :', bg='black', 
+cantidad =Label(frame_1, text='Coordenadas 🍎 :', bg='black', 
     fg = 'white', font=('Arial',12, 'bold'))
 cantidad.grid(row=0, column=2, padx=20)
 
