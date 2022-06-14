@@ -5,9 +5,10 @@ Autor: Brayan Herney Taimal Cuastumal
 """
 
 """Imporatar las librerias necesarias"""
-from tkinter import Entry, Label, Frame, Tk, Button,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
+from tkinter import Entry, Label, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
 from conexion_mysql import*
-from juego_view import*
+
+#from juego_view import*
 
 class Registro(Frame):
 
@@ -55,7 +56,7 @@ class Registro(Frame):
        
         Label(self.frame4, text = 'Control',fg='white', bg ='black', font=('Rockwell',12,'bold')).grid(columnspan=3, column=0,row=0, pady=1, padx=4)         
         Button(self.frame4,command= self.agregar_datos, text='REGISTRAR', font=('Arial',10,'bold'), bg='magenta2').grid(column=0,row=1, pady=10, padx=4)
-        Button(self.frame4,command = self.limpiar_datos, text='LIMPIAR', font=('Arial',10,'bold'), bg='orange red').grid(column=1,row=1, padx=10)        
+        Button(self.frame4,command = self.ventana_promedio, text='Promedio', font=('Arial',10,'bold'), bg='orange red').grid(column=1,row=1, padx=10)        
         Button(self.frame4,command = self.eliminar_fila, text='ELIMINAR', font=('Arial',10,'bold'), bg='yellow').grid(column=2,row=1, padx=4)
         Button(self.frame4,command = self.buscar_nombre, text='BUSCAR POR NOMBRE', font=('Arial',8,'bold'), bg='orange').grid(columnspan=2,column = 1, row=2)
         Entry(self.frame4,textvariable=self.buscar , font=('Arial',12), width=10).grid(column=0,row=2, pady=1, padx=8)
@@ -140,7 +141,7 @@ class Registro(Frame):
             self.tabla.insert('',i, text = registro[i][1:2], values=registro[i][2:6])
             
 
-
+    """Elminar usuario"""
     def eliminar_fila(self):
         fila = self.tabla.selection()
         if len(fila) !=0:        
@@ -149,14 +150,18 @@ class Registro(Frame):
             self.base_datos.elimina_productos(nombre)
 
 
-    """creo que no me sirve esta"""
+    """obtener fila del usuario"""
     def obtener_fila(self, event):
         current_item = self.tabla.focus()
         if not current_item:
             return
         data = self.tabla.item(current_item)
-        self.nombre_borar = data['values'][0]
+        self.nombre_borar = data['values'][0]    
    
+    def ventana_promedio(self):
+        ventanap = Toplevel()
+        ventanap.geometry("400x300")
+        ventanap.title("Promedio")
 
 def main():
     ventana = Tk()
