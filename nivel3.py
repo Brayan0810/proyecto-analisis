@@ -67,10 +67,10 @@ def direccion(event):
 
     if event == 'left':
         if direction != 'right':
-            direction = direction
+            direction = event
     elif event == 'right':
         if direction != 'left':
-            direction = direction
+            direction = event
     elif event == 'up':
         if direction != 'down':
             direction = event
@@ -168,16 +168,16 @@ for i in range(0,480,80):
 canvas.create_text(440,440, text='🍎', fill='red2',
  font = ('Arial',30), tag = 'food')
 
-canvas.create_text(40,200, text='🟨', fill='white',
+canvas.create_text(40,200, text='💥', fill='white',
  font = ('Arial',50), tag = 'food')
 
-canvas.create_text(280,40, text='🟨', fill='white',
+canvas.create_text(280,40, text='💥', fill='white',
  font = ('Arial',50), tag = 'food')
 
-canvas.create_text(280,280, text='🟨', fill='white',
+canvas.create_text(280,280, text='💥', fill='white',
  font = ('Arial',50), tag = 'food')
 
-canvas.create_text(360,280, text='🟨', fill='white',
+canvas.create_text(360,280, text='💥', fill='white',
  font = ('Arial',50), tag = 'food')
 
 button1 = Button(frame_1, text='Ir al cuestionario', bg='orange' ,

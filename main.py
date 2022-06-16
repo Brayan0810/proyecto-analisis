@@ -8,7 +8,7 @@ Autor: Brayan Herney Taimal Cuastumal
 from tkinter import Entry, Label, messagebox, Frame, Tk, Button, Toplevel,ttk, Scrollbar, VERTICAL, HORIZONTAL,StringVar,END
 from conexion_mysql import*
 
-#from juego_view import*
+from nivel3 import*
 
 class Registro(Frame):
 
@@ -28,9 +28,9 @@ class Registro(Frame):
 
         self.codigo = StringVar()
         self.nombre = StringVar()
-        self.modelo = StringVar()
-        self.precio = StringVar()
-        self.cantidad = StringVar()
+        self.pregunta1 = StringVar()
+        self.pregunta2 = StringVar()
+        self.pregunta3 = StringVar()
         self.buscar = StringVar()
 
         self.base_datos = Database()
@@ -50,9 +50,9 @@ class Registro(Frame):
 
         Entry(self.frame2,textvariable=self.codigo , font=('Arial',12)).grid(column=1,row=1, padx =5)
         Entry(self.frame2,textvariable=self.nombre , font=('Arial',12)).grid(column=1,row=2)
-        Entry(self.frame2,textvariable=self.modelo , font=('Arial',12)).grid(column=1,row=3)
-        Entry(self.frame2,textvariable=self.precio , font=('Arial',12)).grid(column=1,row=4)
-        Entry(self.frame2,textvariable=self.cantidad , font=('Arial',12)).grid(column=1,row=5)
+        Entry(self.frame2,textvariable=self.pregunta1 , font=('Arial',12)).grid(column=1,row=3)
+        Entry(self.frame2,textvariable=self.pregunta2 , font=('Arial',12)).grid(column=1,row=4)
+        Entry(self.frame2,textvariable=self.pregunta3 , font=('Arial',12)).grid(column=1,row=5)
        
         Label(self.frame4, text = 'Control',fg='white', bg ='black', font=('Rockwell',12,'bold')).grid(columnspan=3, column=0,row=0, pady=1, padx=4)         
         Button(self.frame4,command= self.agregar_datos, text='REGISTRAR', font=('Arial',10,'bold'), bg='green2').grid(column=0,row=1, pady=10, padx=4)
@@ -102,28 +102,28 @@ class Registro(Frame):
         self.tabla.get_children()
         codigo = self.codigo.get()
         nombre = self.nombre.get()
-        modelo = self.modelo.get()
-        precio = self.precio.get()
-        cantidad = self.cantidad.get()
+        modelo = self.pregunta1.get()
+        precio = self.pregunta2.get()
+        cantidad = self.pregunta3.get()
         datos = (nombre, modelo, precio, cantidad)
         if codigo and nombre and modelo and precio and cantidad !='':        
             self.tabla.insert('',0, text = codigo, values=datos)
-            self.base_datos.inserta_producto(codigo, nombre, modelo, precio, cantidad)
+            self.base_datos.inserta_usuario(codigo, nombre, modelo, precio, cantidad)
 
 
     def limpiar_datos(self):
         self.tabla.delete(*self.tabla.get_children())
         self.codigo.set('')
         self.nombre.set('')
-        self.modelo.set('')
-        self.precio.set('')
-        self.cantidad.set('')
+        self.pregunta1.set('')
+        self.pregunta2.set('')
+        self.pregunta3.set('')
         
 
     def buscar_nombre(self):
         nombre_producto = self.buscar.get()
         nombre_producto = str("'" + nombre_producto + "'")
-        nombre_buscado = self.base_datos.busca_producto(nombre_producto)
+        nombre_buscado = self.base_datos.busca_usuario(nombre_producto)
         self.tabla.delete(*self.tabla.get_children())
         i = -1
         for dato in nombre_buscado:
@@ -133,7 +133,7 @@ class Registro(Frame):
 
     def mostrar_todo(self):
         self.tabla.delete(*self.tabla.get_children())
-        registro = self.base_datos.mostrar_productos()
+        registro = self.base_datos.mostrar_usuarios()
         i = -1
         for dato in registro:
             i= i+1                       
@@ -153,7 +153,7 @@ class Registro(Frame):
         if len(fila) !=0:        
             self.tabla.delete(fila)
             nombre = ("'"+ str(self.nombre_borar) + "'")       
-            self.base_datos.elimina_productos(nombre)
+            self.base_datos.elimina_usuario(nombre)
 
 
     """obtener fila del usuario"""

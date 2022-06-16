@@ -21,7 +21,7 @@ class Database:
         
 
     """Metodo para agregra los datos de usuarios"""
-    def inserta_producto(self,codigo, nombre, modelo, precio, cantidad):
+    def inserta_usuario(self,codigo, nombre, modelo, precio, cantidad):
         cur = self.conexion.cursor()
         sql='''INSERT INTO usuario (CODIGO, NOMBRE, PREGUNTA1, PREGUNTA2, PREGUNTA3) 
         VALUES('{}', '{}','{}', '{}','{}')'''.format(codigo, nombre, modelo, precio, cantidad)
@@ -30,7 +30,7 @@ class Database:
         cur.close()
 
     """Metodo para mostrar los datos de los usuarios"""
-    def mostrar_productos(self):
+    def mostrar_usuarios(self):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM usuario " 
         cursor.execute(sql)
@@ -38,7 +38,7 @@ class Database:
         return registro
 
     
-    def busca_producto(self, nombre_producto):
+    def busca_usuario(self, nombre_producto):
         cur = self.conexion.cursor()
         sql = "SELECT * FROM usuario WHERE NOMBRE = {}".format(nombre_producto)
         cur.execute(sql)
@@ -47,7 +47,7 @@ class Database:
         return nombreX 
 
 
-    def elimina_productos(self,nombre):
+    def elimina_usuario(self,nombre):
         cur = self.conexion.cursor()
         sql='''DELETE FROM usuario WHERE NOMBRE = {}'''.format(nombre)
         cur.execute(sql)
